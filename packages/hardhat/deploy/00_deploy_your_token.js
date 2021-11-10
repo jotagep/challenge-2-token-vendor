@@ -12,14 +12,16 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   await deploy("YourToken", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    // args: [ "Hello", ethers.utils.parseEther("1.5") ],
+    args: [ethers.utils.parseEther("10000")],
     log: true,
   });
 
   // Todo: transfer tokens to frontend address
   const yourToken = await ethers.getContract("YourToken", deployer);
-
-  // const result = await yourToken.transfer("YOUR_FRONT_END_ADDRESS", ethers.utils.parseEther("1000") );
+  const result = await yourToken.transfer(
+    "0xb724c8174e366e72d97dc244fa9df36c6e270f47",
+    ethers.utils.parseEther("1000")
+  );
 
   /*
     // Getting a previously deployed contract
